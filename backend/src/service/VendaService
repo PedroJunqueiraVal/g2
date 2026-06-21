@@ -1,0 +1,121 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class VendaService {
+
+    //carrinho ativo — só existe uma venda em aberto por vez
+    private Venda carrinhoAtivo;
+
+    //histórico de todas as vendas finalizadas nesta sessão
+    private List<Venda> historicoVendas;
+
+
+    public VendaService() {
+        this.historicoVendas = new ArrayList<>();
+    }
+
+
+    //abre um novo carrinho, se já existir um aberto, alerta o usuário.
+    public void abrirCarrinho() {
+        if (carrinhoAtivo != null && !carrinhoAtivo.isFinalizada()) {
+            System.out.println("Já existe um carrinho aberto (Venda #" + carrinhoAtivo.getId() + "). Finalize-o antes de abrir outro.");
+            return;
+        }
+        carrinhoAtivo = new Venda();
+        System.out.println("Carrinho aberto! Venda #" + carrinhoAtivo.getId() + " iniciada.");
+    }
+
+    //adiciona um produto ao carrinho ativo.
+    public boolean adicionarItem(Produto produto, int quantidade) {
+        if (!carrinhoAberto()) return false;
+        return carrinhoAtivo.adicionarItem(produto, quantidade);
+    }
+
+    //remove um item do carrinho pelo índice
+    public boolean removerItem(int indice) {
+        if (!carrinhoAberto()) return false;
+        return carrinhoAtivo.removerItem(indice);
+    }
+
+    /**
+     * exibe os itens do carrinho e o total atual.
+     */
+    public void exibirCarrinho() {
+        if (!carrinhoAberto()) return;
+
+        List<ItemVenda> itens = carrinhoAtivo.getItens();
+
+        System.out.println("\n CARRINHO — Venda #" + carrinhoAtivo.getId());
+
+        if (itens.isEmpty()) {
+            System.out.println("  (carrinho vazio)");
+        } else {
+            for (int i = 0; i < itens.size(); i++) {
+                System.out.println("  [" + i + "] " + itens.get(i));
+            }
+        }
+
+        System.out.printf("%nTOTAL: R$ %.2f%n", carrinhoAtivo.calcularTotal());
+        System.out.println("\n");
+    }
+
+    /**
+     * finaliza a venda ativa: confirma os itens, baixa o estoque e arquiva no histórico.
+     * @return true se a venda foi finalizada com sucesso, false caso contrário
+     */
+    public boolean finalizarVenda() {
+        if (!carrinhoAberto()) return false;
+
+        boolean sucesso = carrinhoAtivo.finalizarVenda();
+
+        if (sucesso) {
+            historicoVendas.add(carrinhoAtivo);
+            System.out.println(carrinhoAtivo); // imprime o recibo
+            carrinhoAtivo = null;              // limpa o carrinho para a próxima venda
+        }
+
+        return sucesso;
+    }
+
+    /**
+     * cancela o carrinho atual sem finalizar, descartando todos os itens.
+     * não altera o estoque porque a venda nunca foi confirmada.
+     */
+    public void cancelarCarrinho() {
+        if (!carrinhoAberto()) return;
+        System.out.println("Venda #" + carrinhoAtivo.getId() + " cancelada. Nenhum item foi cobrado.");
+        carrinhoAtivo = null;
+    }
+
+
+    //HISTÓRICO
+    //exibe todas as vendas finalizadas nesta sessão.
+    public void exibirHistorico() {
+        if (historicoVendas.isEmpty()) {
+            System.out.println("Nenhuma venda finalizada nesta sessão.");
+            return;
+        }
+
+        System.out.println("\n HISTÓRICO DE VENDAS ");
+        for (Venda v : historicoVendas) {
+            System.out.println(v);
+        }
+    }
+
+    //auxiliares
+    private boolean carrinhoAberto() {
+        if (carrinhoAtivo == null || carrinhoAtivo.isFinalizada()) {
+            System.out.println("Nenhum carrinho aberto. Use abrirCarrinho() primeiro.");
+            return false;
+        }
+        return true;
+    }
+
+    public Venda getCarrinhoAtivo() {
+        return carrinhoAtivo;
+    }
+
+    public List<Venda> getHistoricoVendas() {
+        return historicoVendas;
+    }
+}
