@@ -50,7 +50,7 @@ Desenvolver um site que simule um marketplace de compra e venda de alimentos, in
 ### Atribuição de tarefas e responsabilidades
 
 - [Pedro](https://github.com/PedroJunqueiraUFG): Gerênciador do projeto e líder técnico
-- [Ana Clara](): Desenvolvedora do front-end
+- [Ana Clara](https://github.com/anac-borba): Desenvolvedora do front-end
 - [Daniel](https://github.com/Danielmendc): Desenvolvedor do back-end
 - [Tiago](https://github.com/CyberEnd172): Desenvolvedor do back-end
 
