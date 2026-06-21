@@ -3,7 +3,7 @@
 
 ### Membros da equipe:
 
-- [Ana Clara Alcântara Borba dos Santos]()
+- [Ana Clara Alcântara Borba dos Santos](https://github.com/anac-borba)
 - [Daniel Mendonça de Moura Filho](https://github.com/Danielmendc)
 - [Tiago Sousa Guimalhães](https://github.com/CyberEnd172)
 - [Pedro Ferreira Juqueira do Val](https://github.com/PedroJunqueiraUFG)
