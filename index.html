@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>@@ CA STORE @@</h1>
+        <p>Sistema de Vendas — Centro Acadêmico</p>
+    </header>
+
+    <main class="container">
+        <section id="tela-identificacao" class="card">
+            <h2>Iniciar Pedido</h2>
+            <div class="input-group">
+                <label for="nome-cliente">Informe seu nome:</label>
+                <input type="text" id="nome-cliente" placeholder="Digite seu nome aqui...">
+            </div>
+            <button onclick="iniciarPedido()">Ver Cardápio</button>
+        </section>
+
+        <section id="tela-loja" class="card hidden">
+            <div class="loja-header">
+                <h2>Cardápio</h2>
+                <p>Cliente: <span id="label-cliente"></span></p>
+            </div>
+            <div id="vitrine" class="vitrine"></div>
+            <div class="loja-acoes">
+                <button class="btn-secundario" onclick="voltarParaIdentificacao()">Voltar</button>
+                <button class="btn-sucesso" onclick="enviarPedido()">Fechar Pedido</button>
+            </div>
+        </section>
+
+        <section id="tela-pagamento" class="card hidden">
+            <h2>Pagamento</h2>
+            <p class="data-hora">Pedido feito em: <span id="pedido-horario"></span></p>
+            
+            <div id="blocos-pagamento"></div>
+
+            <div class="total-geral">
+                <h3>Total Geral: R$ <span id="total-geral-valor">0.00</span></h3>
+            </div>
+
+            <div class="loja-acoes">
+                <button class="btn-secundario" onclick="voltarParaLoja()">Alterar Itens</button>
+                <button class="btn-sucesso" onclick="finalizarTudo()">Confirmar e Finalizar</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
