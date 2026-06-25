@@ -8,7 +8,7 @@ Relatório Individual - Daniel Mendonça de Moura Filho - 202503221
   Na prática, participei da modelagem e implementação completa dessas classes, garantindo que a lógica de negócio permanecesse desacoplada da interface do sistema. Além disso, foram desenvolvidas validações de estoque, controle de estado das vendas e mecanismos para registro do histórico de vendas em memória, utilizando apenas recursos da API padrão do Java.
 
 ## 2. Contribuição de Acordo com a Atribuição
-###O que foi cumprido
+### O que foi cumprido
 
 As atividades previstas foram executadas conforme o planejamento da etapa:
 
